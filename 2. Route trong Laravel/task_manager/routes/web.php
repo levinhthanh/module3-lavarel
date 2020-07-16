@@ -33,12 +33,14 @@ Route::prefix('customer')->group(function () {
         // Xử lý lưu dữ liệu tạo khách hàng thong qua phương thức POST từ form
     });
   
-    Route::get('{id}/show', function () {
+    Route::get('{id}/show', function ($id) {
         // Hiển thị thông tin chi tiết khách hàng có mã định danh id
+        return view('modules.customer.show_customer',['id' => "$id"]);
     });
   
-    Route::get('{id}/edit', function () {
+    Route::get('{id}/edit', function ($id) {
         // Hiển thị Form chỉnh sửa thông tin khách hàng
+        return view('modules.customer.edit_customer',['id' => "$id"]);
     });
   
     Route::patch('{id}/update', function () {
