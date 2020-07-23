@@ -26,3 +26,13 @@ Route::group(['prefix' => 'blog'], function () {
     Route::post('/{id}/edit','BlogController@update')->name('blog.update');
     Route::get('/{id}/destroy','BlogController@destroy')->name('blog.destroy');
   });
+
+  Route::group(['prefix' => 'category'], function () {
+    Route::get('/','CategoryController@index')->name('category.index');
+    Route::get('/create','CategoryController@create')->name('category.create');
+    Route::post('/create','CategoryController@store')->name('category.store');
+    Route::get('/{id}/read','CategoryController@read')->name('category.read');
+    Route::get('/{id}/edit','CategoryController@edit')->name('category.edit');
+    Route::post('/{id}/edit','CategoryController@update')->name('category.update');
+    Route::get('/{id}/destroy','CategoryController@destroy')->name('category.destroy');
+  });

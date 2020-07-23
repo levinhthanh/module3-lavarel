@@ -37,6 +37,18 @@
 
               <div class="form-group">
 
+                <label >Thể loại</label>
+
+                <select name="category_id" class="form-control" required>
+                    <option value="1">Truyện ngắn</option>
+                    <option value="2">Thơ ca</option>
+                    <option value="3">Cảm động</option>
+                </select>
+
+            </div>
+
+              <div class="form-group">
+
                   <label for="exampleFormControlFile1">Ảnh 1 (bắt buộc)</label>
 
                   <input type="file" name="image1" class="form-control-file" required>

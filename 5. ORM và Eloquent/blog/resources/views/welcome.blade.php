@@ -85,8 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="/blog">Danh sách bài viết</a>
-                    <a href="{{ route('blog.create') }}">Thêm bài viết mới</a>
+                    <a href="/blog">Bài viết</a>
+                    <a href="/category">Danh mục</a>
+                    {{-- <a href="{{ route('blog.create') }}">Thêm bài viết mới</a> --}}
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blog;
+use App\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +13,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all()->where('deleted','=','0');
-        return view('blog.list', compact('blogs'));
+        $categories = Category::all()->where('deleted','=','0');
+        return view('blog.list', compact(['blogs','categories']));
     }
 
     /**
@@ -37,6 +39,7 @@ class BlogController extends Controller
         $task = new Blog();
         $task->title = $request->input('title');
         $task->content = $request->input('content');
+        $task->category_id = $request->input('category_id');
 
         //upload file
         if ($request->hasFile('image1')) {
