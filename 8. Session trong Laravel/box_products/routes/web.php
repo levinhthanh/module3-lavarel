@@ -28,3 +28,4 @@ Route::group(['prefix' => 'add'], function () {
 Route::get('/delete/{id}', 'ProductController@delete')->name('delete');
 Route::get('/increase/{id}', 'ProductController@increase')->name('increase');
 Route::get('/reduce/{id}', 'ProductController@reduce')->name('reduce');
+Route::get('/sum', 'ProductController@sum')->name('sum');

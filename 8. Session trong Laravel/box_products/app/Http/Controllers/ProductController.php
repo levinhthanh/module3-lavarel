@@ -59,6 +59,22 @@ class ProductController extends Controller
         return view('list_box', compact('array'));
     }
 
+    public function sum()
+    {
+        $session = Session::all();
+        $sum = 0;
+        foreach ($session as $key => $value) {
+            $check = substr($key, 0, 4);
+            if ($check === 'prod') {
+                $id = substr($key, 8);
+                $info = Product::findOrFail($id);
+                $sum += (float) ($value * $info->price);
+            }
+        }
+        $sum = number_format($sum).'đ';
+        return response()->json($sum);
+    }
+
     public function delete($id)
     {
         $session = Session::all();
