@@ -6,12 +6,7 @@
     <p class="h2 text-danger text-center">CHI TIẾT SẢN PHẨM</p><br>
 
     <div class="container">
-
-
-
-
-
-        <a href="{{ route('view_list') }}">Quay lại danh sách</a>
+        <a class="d-block text-danger text-center" href="{{ route('view_list') }}">Quay lại danh sách</a><br>
         <div class="d-flex justify-content-center bd-highlight text-center ml-10">
             <div class="p-2 w-25 bd-highlight">
                 <img class="img-fluid w-70" src="/{{ $product->image }}" alt="image"><br>

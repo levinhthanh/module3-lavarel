@@ -6,6 +6,7 @@
 
     <br>
     <p class="h2 text-danger text-center">DANH SÁCH SẢN PHẨM</p><br>
+    <a class="d-block text-danger text-center" href="{{ route('view_box') }}">Xem giỏ hàng</a><br>
     @if(count($products) == 0)
         <tr>
             <td colspan="4">Không có sản phẩm</td>

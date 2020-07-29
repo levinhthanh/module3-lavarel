@@ -4,6 +4,7 @@
 
     <br>
     <p class="h2 text-danger text-center">GIỎ HÀNG</p><br>
+    <a class="d-block text-danger text-center" href="{{ route('view_list') }}">Quay lại danh sách</a><br>
     @if(count($array) == 0)
         <tr>
             <td colspan="4">Không có sản phẩm</td>
@@ -33,11 +34,11 @@
                                 {{ number_format($product[0]->price) }}đ
                             </td>
                             <td class="w-25 text-center">
-                                <button>+</button>
-                                <input class="w-25 text-center" type="text" value="{{ $product[1] }}">
-                                <button>-</button>
+                                <button onclick="reduce_product({{ $product[0]->id }})">-</button>
+                                <label id="input{{ $product[0]->id }}" class="w-25 text-center">{{ $product[1] }}</label>
+                                <button onclick="increase_product({{ $product[0]->id }})">+</button>
                                 <br><br>
-                                <button id="{{ $product[0]->id }}" onclick="delete_product({{ $product[0]->id }})"
+                                <button onclick="delete_product({{ $product[0]->id }})"
                                     class="bg-danger text-white">Xóa</button>
                             </td>
                         </tr>
@@ -47,26 +48,48 @@
         </div>
         <script>
             function delete_product(id) {
-                old =id;
+                old = id;
                 id = '#' + id;
                 $(id).hide();
-                $(id).click(function(e) {
-                    e.preventDefault();
-                    $.ajax({
-                        url: '/delete/'+old,
-                        type: 'get',
-                        dataType: 'json',
-
-                    }).done(function(ketqua) {
-                        alert(ketqua);
-                    });
-
+                $.ajax({
+                    url: '/delete/' + old,
+                    type: 'get',
+                    dataType: 'json',
+                }).done(function(result) {
+                    alert(result);
                 });
             };
 
+            function increase_product(id) {
+                old = id;
+                id = '#' + id;
+                    $.ajax({
+                        url: '/increase/' + old,
+                        type: 'get',
+                        dataType: 'json',
+                    }).done(function(result2) {
+                        console.log(result2);
+
+                        $('#input'+old).html(result2);
+                    });
+            };
+
+            function reduce_product(id) {
+                old = id;
+                id = '#' + id;
+                    $.ajax({
+                        url: '/reduce/' + old,
+                        type: 'get',
+                        dataType: 'json',
+                    }).done(function(result3) {
+                        console.log(result3);
+
+                        $('#input'+old).html(result3);
+                    });
+            };
 
         </script>
     @endif
 
-    @
+
 @endsection

@@ -20,11 +20,11 @@ class ProductController extends Controller
         if (!Session::has($productKey)) {
             Session::put($productKey, 0);
             $count = 0;
-        }else {
+        } else {
             $count = Session::pull($productKey, null);
         }
         $product = Product::findOrFail($id);
-        return view('details', compact('product','count'));
+        return view('details', compact('product', 'count'));
     }
 
     public function add_box($id)
@@ -46,10 +46,10 @@ class ProductController extends Controller
     {
         $session = Session::all();
         $array = [];
-        foreach($session as $key => $value){
-            $check = substr($key,0,4);
-            if($check === 'prod'){
-                $id = substr($key,8);
+        foreach ($session as $key => $value) {
+            $check = substr($key, 0, 4);
+            if ($check === 'prod') {
+                $id = substr($key, 8);
                 $info = Product::findOrFail($id);
                 $product = [$info, $value];
                 array_push($array, $product);
@@ -62,12 +62,33 @@ class ProductController extends Controller
     public function delete($id)
     {
         $session = Session::all();
-        $id = 'product_'.$id;
-        foreach($session as $key => $value){
-            if($key === $id){
+        $id = 'product_' . $id;
+        foreach ($session as $key => $value) {
+            if ($key === $id) {
                 Session::forget("$key");
             }
         }
-        return response()->json('Đã xóa');
+        return response()->json('Đã xóa khỏi giỏ hàng');
+    }
+
+    public function increase($id)
+    {
+        $id = 'product_' . $id;
+        $count = Session::pull($id, null);
+        $count = (int)$count + 1;
+        Session::put($id, $count);
+        return response()->json($count);
+    }
+
+    public function reduce($id)
+    {
+        $id = 'product_' . $id;
+        $count = Session::pull($id, null);
+        $count = (int)$count - 1;
+        if($count < 0){
+            $count = 0;
+        }
+        Session::put($id, $count);
+        return response()->json($count);
     }
 }
