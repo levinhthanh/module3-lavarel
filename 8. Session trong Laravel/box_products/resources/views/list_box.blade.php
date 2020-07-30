@@ -42,7 +42,7 @@
                                 <button onclick="delete_product({{ $product[0]->id }})"
                                     class="bg-danger text-white">Xóa</button>
                             </td>
-                            <td class=" text-center">
+                            <td id="multi{{ $product[0]->id }}" class=" text-center">
                                 {{ number_format($product[0]->price * $product[1]) }}đ
                             </td>
                         </tr>
@@ -58,22 +58,8 @@
             </table>
         </div>
         <script>
-            window.onload= function(){
+            window.onload = function() {
                 calculation_sum();
-            };
-
-            function calculation_sum() {
-                $.ajax({
-                    url: '/sum',
-                    type: 'get',
-                    dataType: 'json',
-                }).done(function(result) {
-                    console.log(result);
-
-                    $('#sum').html(result);
-                });
-
-
             };
 
             function delete_product(id) {
@@ -87,35 +73,53 @@
                 }).done(function(result) {
                     alert(result);
                 });
+                calculation_sum();
             };
 
             function increase_product(id) {
-                old = id;
-                id = '#' + id;
                 $.ajax({
-                    url: '/increase/' + old,
+                    url: '/increase/' + id,
                     type: 'get',
                     dataType: 'json',
                 }).done(function(result) {
-                    console.log(result);
-
-                    $('#input' + old).html(result);
+                    $('#input' + id).html(result);
                 });
+                calculation_multi(id);
                 calculation_sum();
             };
 
             function reduce_product(id) {
-                old = id;
-                id = '#' + id;
                 $.ajax({
-                    url: '/reduce/' + old,
+                    url: '/reduce/' + id,
                     type: 'get',
                     dataType: 'json',
                 }).done(function(result) {
-                    console.log(result);
-                    $('#input' + old).html(result);
+                    $('#input' + id).html(result);
                 });
+                calculation_multi(id);
                 calculation_sum();
+            };
+
+            function calculation_multi(id) {
+                console.log('id = '+id);
+                $.ajax({
+                    url: '/multi/' + id,
+                    type: 'get',
+                    dataType: 'json',
+                }).done(function(result) {
+                    $('#multi' + id).html(result);
+                    console.log('id = '+result);
+                });
+            }
+
+            function calculation_sum() {
+                $.ajax({
+                    url: '/sum',
+                    type: 'get',
+                    dataType: 'json',
+                }).done(function(result) {
+                    $('#sum').html(result);
+                });
             };
 
         </script>

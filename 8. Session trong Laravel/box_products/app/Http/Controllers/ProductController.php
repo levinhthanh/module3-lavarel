@@ -71,8 +71,19 @@ class ProductController extends Controller
                 $sum += (float) ($value * $info->price);
             }
         }
-        $sum = number_format($sum).'đ';
+        $sum = number_format($sum) . 'đ';
         return response()->json($sum);
+    }
+
+    public function multi($id)
+    {
+        $info = Product::findOrFail($id);
+        $id = 'product_' . $id;
+        $count = Session::pull($id, null);
+        Session::put($id, $count);
+        $multi = (float) ($count * $info->price);
+        $multi = number_format($multi) . 'đ';
+        return response()->json($multi);
     }
 
     public function delete($id)
@@ -101,7 +112,7 @@ class ProductController extends Controller
         $id = 'product_' . $id;
         $count = Session::pull($id, null);
         $count = (int)$count - 1;
-        if($count < 0){
+        if ($count < 0) {
             $count = 0;
         }
         Session::put($id, $count);
