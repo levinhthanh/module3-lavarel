@@ -19,7 +19,8 @@
                         <th class="w-25 text-center">Tên sản phẩm</th>
                         <th class=" text-center">Giá</th>
                         <th class="w-25 text-center">Số lượng</th>
-                        <th class=" text-center">Thành tiền</th>
+                        <th class=" text-center">Xóa</th>
+                        <th class="w-25 text-center">Thành tiền</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,10 +40,12 @@
                                 <label id="input{{ $product[0]->id }}" class="w-25 text-center">{{ $product[1] }}</label>
                                 <button onclick="increase_product({{ $product[0]->id }})">+</button>
                                 <br><br>
-                                <button onclick="delete_product({{ $product[0]->id }})"
-                                    class="bg-danger text-white">Xóa</button>
+
                             </td>
-                            <td id="multi{{ $product[0]->id }}" class=" text-center">
+                            <td class=" text-center">
+                                <i class="far fa-trash-alt text-danger" onclick="delete_product({{ $product[0]->id }})"></i>
+                            </td>
+                            <td id="multi{{ $product[0]->id }}" class="w-25 text-center">
                                 {{ number_format($product[0]->price * $product[1]) }}đ
                             </td>
                         </tr>
@@ -60,6 +63,28 @@
         <script>
             window.onload = function() {
                 calculation_sum();
+            };
+
+            function calculation_multi(id) {
+                console.log('id = ' + id);
+                $.ajax({
+                    url: '/multi/' + id,
+                    type: 'get',
+                    dataType: 'json',
+                }).done(function(result) {
+                    $('#multi' + id).html(result);
+                    console.log('id = ' + result);
+                });
+            }
+
+            function calculation_sum() {
+                $.ajax({
+                    url: '/sum',
+                    type: 'get',
+                    dataType: 'json',
+                }).done(function(result) {
+                    $('#sum').html(result);
+                });
             };
 
             function delete_product(id) {
@@ -98,28 +123,6 @@
                 });
                 calculation_multi(id);
                 calculation_sum();
-            };
-
-            function calculation_multi(id) {
-                console.log('id = '+id);
-                $.ajax({
-                    url: '/multi/' + id,
-                    type: 'get',
-                    dataType: 'json',
-                }).done(function(result) {
-                    $('#multi' + id).html(result);
-                    console.log('id = '+result);
-                });
-            }
-
-            function calculation_sum() {
-                $.ajax({
-                    url: '/sum',
-                    type: 'get',
-                    dataType: 'json',
-                }).done(function(result) {
-                    $('#sum').html(result);
-                });
             };
 
         </script>

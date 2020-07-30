@@ -30,3 +30,7 @@ Route::get('/increase/{id}', 'CartController@increase')->name('increase');
 Route::get('/reduce/{id}', 'CartController@reduce')->name('reduce');
 Route::get('/sum', 'CartController@sum')->name('sum');
 Route::get('/multi/{id}', 'CartController@multi')->name('multi');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
