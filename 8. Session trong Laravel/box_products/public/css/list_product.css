@@ -1,0 +1,14 @@
+html,body{
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+    color: coral;
+}
+.navbar{
+    background-color: dimgray !important;
+}
+.navbar li a{
+    color: white !important;
+}
+.navbar li a:hover{
+    color: black !important;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', 'ProductController@index')->name('view_list');
-
 Route::get('/view_box', 'ProductController@view_box')->name('view_box');
+Route::get('/product/{id}', 'ProductController@view_detail');
+Route::get('/add/{id}', 'ProductController@add_box');
+// Route::group(['prefix' => 'product'], function () {
+//     Route::get('/{id}', 'ProductController@view_detail');
+// });
 
-Route::group(['prefix' => 'product'], function () {
-    Route::get('/{id}', 'ProductController@view_detail');
-});
+// Route::group(['prefix' => 'add'], function () {
+//     Route::get('/{id}', 'ProductController@add_box');
+// });
 
-Route::group(['prefix' => 'add'], function () {
-    Route::get('/{id}', 'ProductController@add_box');
-});
+
+
 
 Route::get('/delete/{id}', 'CartController@delete')->name('delete');
 Route::get('/increase/{id}', 'CartController@increase')->name('increase');
@@ -31,6 +39,7 @@ Route::get('/reduce/{id}', 'CartController@reduce')->name('reduce');
 Route::get('/sum', 'CartController@sum')->name('sum');
 Route::get('/multi/{id}', 'CartController@multi')->name('multi');
 
-Auth::routes();
+Route::get('/dashboard', 'AdminController@index')->name('dashboard');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/add_product', 'AdminController@add_product')->name('add_product');
+

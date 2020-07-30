@@ -66,7 +66,6 @@
             };
 
             function calculation_multi(id) {
-                console.log('id = ' + id);
                 $.ajax({
                     url: '/multi/' + id,
                     type: 'get',

@@ -20,7 +20,10 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="css/fontawesome/css/all.css">
+        <link rel="stylesheet" href="./css/list_product.css">
+        <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
     <title> @yield('title')</title>
+
 </head>
 
 <body>
