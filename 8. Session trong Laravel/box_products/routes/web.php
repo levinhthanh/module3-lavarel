@@ -19,6 +19,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'ProductController@index')->name('view_list');
+Route::get('/get_products', 'ProductController@get_products')->name('get_products');
 Route::get('/view_box', 'ProductController@view_box')->name('view_box');
 Route::get('/product/{id}', 'ProductController@view_detail');
 Route::get('/add/{id}', 'ProductController@add_box');
@@ -40,6 +41,6 @@ Route::get('/sum', 'CartController@sum')->name('sum');
 Route::get('/multi/{id}', 'CartController@multi')->name('multi');
 
 Route::get('/dashboard', 'AdminController@index')->name('dashboard');
-
-    Route::get('/add_product', 'AdminController@add_product')->name('add_product');
+Route::get('/product_list', 'AdminController@product_list')->name('product_list');
+Route::get('/add_product', 'AdminController@add_product')->name('add_product');
 

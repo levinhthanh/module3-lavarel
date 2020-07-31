@@ -27,6 +27,15 @@
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   <!-- DataTables -->
+   <link rel="stylesheet"
+   type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+ <script type="text/javascript"
+   charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
+ </script>
+ <!-- My CSS and JQuery -->
+ <link href="./css/style.css" rel="stylesheet">
+ <script type="text/javascript" src="./jquery/index.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -170,8 +179,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="" class="brand-link">
-                <img src="dist/img/logo.png" alt="logo" class="brand-image img-circle elevation-3"
-                    style="opacity: .8">
+                <img src="dist/img/logo.png" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">ADMIN MY HOTEL</span>
             </a>
 
@@ -238,9 +246,9 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="product_list" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Sản phẩm</p>
+                                        <p>Danh sách sản phẩm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -291,7 +299,7 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-       @yield('content')
+            @yield('content')
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
@@ -346,6 +354,8 @@
     <script src="dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <script src="js/admin.js"></script>
+
 </body>
 
 </html>

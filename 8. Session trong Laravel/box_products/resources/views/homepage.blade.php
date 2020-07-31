@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('title', 'Danh sách sản phẩm')
+@section('title', 'Trang chủ')
 
 
 

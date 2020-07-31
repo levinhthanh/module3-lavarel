@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+<link rel="stylesheet" href="add_product.css">
 @section('title', 'Thêm sản phẩm')
 @section('content_header')
     <div class="content-header">
